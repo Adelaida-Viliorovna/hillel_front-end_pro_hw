@@ -3,9 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>hw_3-2</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Home Work № 3.2</h1>
+    </header>
+    <main>
+        <h2>Числа та рядки</h2>
+        <ul>
+            <li>Отримати від користувача 3 рядки та вивести їх у довільному порядку однією командою (шаблонні рядки);</li>
+        </ul>
+        <h3>Скрипт:</h3>
+        <div class="code">
+            <pre>
+                <code>
+    // v1
+    const name1 = "Anastasiia";
+    const age1 = 22;
+    const movie1 = "Star Wars";
     
+    const message1 =`Your name - ${name1}, Your age - ${age1}, Your favorite movie - "${movie1}"`;
+    console.log(message1);
+    
+    // v2
+    const name2 = prompt("Your name:");
+    const age2 = prompt("Your age:");
+    const movie2 = prompt("Your favorite movie:");
+    
+    const message2 = `Your name - ${name2}, Your age - ${age2}, Your favorite movie - "${movie2}"`;
+    console.log(message2);
+    alert(message2);
+                </code>
+            </pre>
+        </div>
+        <h3>Результат виконання у Terminal:</h3>
+        <img src="./img/v1_terminal.png" alt="terminal_img">
+        <h3>Результат виконання у Debug Console:</h3>
+        <img src="./img/v1_debugConsole.png" alt="debugConsole_img">
+        <h3>Спосіб 2:</h3>
+        <img src="./img/v2_img1.png" alt="v2_img1">
+        <img src="./img/v2_img2.png" alt="v2_img2">
+        <img src="./img/v2_img3.png" alt="v2_img3">
+        <img src="./img/v2_img4.png" alt="v2_img4">
+        <img src="./img/v2_img5.png" alt="v2_img5">
+        <br>
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_3-2" target="_blank">Посилання на гілку на github.com</a>
+    </main>
+    <footer>
+        <h4>Анастасія Лизогуб</h4>
+    </footer>
+    <script src="index.js"></script>
 </body>
 </html>
