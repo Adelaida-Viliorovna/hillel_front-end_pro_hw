@@ -24,6 +24,9 @@ li {
     width: 100%;
     flex-wrap: wrap;
 }
+img {
+    max-width: 600px;
+}
 
 .code {
     background-color: #1a1a1a;
