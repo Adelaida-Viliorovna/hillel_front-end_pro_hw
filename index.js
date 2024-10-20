@@ -1,0 +1,21 @@
+const numberType = 123;
+const stringType = "Hello";
+const booleanType = true;
+const nullType = null;
+const undefinedType = undefined;
+const objectType = { key: "value" };
+const arrayType = [1, 2, 3];
+const functionType = function() {};
+const symbolType = Symbol("id");
+const bigintType = BigInt(12345678901234567890);
+
+console.log("Number:", numberType, "-", typeof numberType);
+console.log("String:", stringType, "-", typeof stringType);
+console.log("Boolean:", booleanType, "-", typeof booleanType);
+console.log("Null:", nullType, "-", typeof nullType); 
+console.log("Undefined:", undefinedType, "-", typeof undefinedType);
+console.log("Object:", objectType, "-", typeof objectType);
+console.log("Array:", arrayType, "-", typeof arrayType);
+console.log("Function:", functionType, "-", typeof functionType);
+console.log("Symbol:", symbolType, "-", typeof symbolType);
+console.log("BigInt:", bigintType, "-", typeof bigintType);

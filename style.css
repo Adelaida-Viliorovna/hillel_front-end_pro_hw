@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+header {
+    display: flex;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+li {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.code {
+    background-color: #1a1a1a;
+    border: 1px solid #000000;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border-radius: 5px;
+    overflow: auto;
+    max-width: 600px;
+}
