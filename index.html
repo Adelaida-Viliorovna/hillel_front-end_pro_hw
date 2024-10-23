@@ -3,9 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>hw_4-3</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header>
+        <h1>Home Work № 4.3</h1>
+    </header>
+    <main>
+        <h2>Портрет користувача</h2>
+        <h3>Основне завдання, cтворити скрипт яки повинен виконувати наступне:</h3>
+        <ul>
+            <li>запитати у користувача рік народження;</li>
+            <li>запитати в нього, в якому місті він живе;</li>
+            <li>запитати його улюблений вид спорту.</li>
+        </ul>
+        <p>При натисканні на ОК показуємо вікно, де має бути відображена наступна інформація:</p>
+        <ul>
+            <li>його вік;</li>
+            <li>якщо користувач вкаже Київ, Вашингтон чи Лондон, 
+                то показати йому повідомлення - "Ти живеш у столиці..." 
+                і на місце точок підставляємо країну, столицею якої є місто. 
+                Інакше показуємо йому “ти живеш у місті…”, 
+                де місце точок – введене місто.
+            </li>
+        </ul>
+        <h3>Додаткове завдання *</h3>
+        <p>Вибираємо самі три види спорту та три чемпіони 
+            у цих видах. Відповідно, якщо користувач вкаже 
+            один із цих видів спорту, то показуємо йому 
+            повідомлення “Круто! Хочеш стати …? 
+            і підставляємо на місце точок ім'я та прізвище 
+            чемпіона. Все це має бути відображено 
+            в одному вікні (алерті).
+        </p>
+        <h3>Додаткове завдання</h3>
+        <p>Якщо в якомусь випадку він не захоче вводити інформацію 
+            і натисне Скасувати, показати йому повідомлення – 
+            “Шкода, що Ви не захотіли ввести свій(ю) …” і вказуємо, 
+            що він не захотів вводити – дату народження, місто чи вид спорту .
+        </p>
+        <h3>Скрипт:</h3>
+        <div class="code">
+            <pre>
+                <code>
+    const userYear = prompt("Введіть ваш рік народження:");
+    const currentYear = new Date().getFullYear();
+    let ageMessage = "";
+    if (userYear) {
+        const age = currentYear - +userYear;
+        ageMessage = `Ваш вік: ${age} років.`;
+    } else {
+        alert("Шкода, що Ви не захотіли ввести свій рік народження.");
+        ageMessage = "---";
+    }
     
+    const userCity = prompt("В якому місті ви живете?");
+    let cityMessage = "";
+    if(userCity){
+        switch(userCity.toLowerCase()) {
+            case "київ":
+                cityMessage = "Ти живеш у столиці України.";
+                break;
+            case "лондон":
+                cityMessage = "Ти живеш у столиці Великої Британії.";
+                break;
+            case "вашингтон":
+                cityMessage = "Ти живеш у столиці США.";
+                break;
+            default:
+                cityMessage = `Ти живеш у місті ${userCity}.`;
+        }
+    } else {
+        cityMessage = "---";
+        alert("Шкода, що Ви не захотіли ввести своє місто.");
+    }
+    
+    const userSport = prompt("Ваш улюблений вид спорту?");
+    let sportMessage = "";
+    if (userSport) {
+        switch (userSport.toLowerCase()) {
+            case "футбол":
+                sportMessage = `Ваш улюблений вид спорту: ${userSport}.\nКруто! Хочеш стати як Ліонель Мессі?`;
+                break;
+            case "баскетбол":
+                sportMessage = `Ваш улюблений вид спорту: ${userSport}.\nКруто! Хочеш стати як Майкл Джордан?`;
+                break;
+            case "теніс":
+                sportMessage = `Ваш улюблений вид спорту: ${userSport}.\nКруто! Хочеш стати як Роджер Федерер?`;
+                break;
+            default:
+                sportMessage = `Ваш улюблений вид спорту: ${userSport}.`;
+        }
+    } else {
+        sportMessage = "---";
+        alert("Шкода, що Ви не захотіли ввести свій улюблений вид спорту.");
+    }
+    
+    alert(`${ageMessage}\n${cityMessage}\n${sportMessage}`);
+                </code>
+            </pre>
+        </div>
+        <h3>Результат:</h3>
+        <p>Повне заповнення</p>
+        <img src="./img/img_1.png" alt="img_1">
+        <img src="./img/img_2.png" alt="img_2">
+        <img src="./img/img_3.png" alt="img_3">
+        <img src="./img/img_4.png" alt="img_4">
+        <p>Вказуємо столицю та обраний вид спорту</p>
+        <img src="./img/img_5.png" alt="img_5">
+        <p>Не заповнюємо</p>
+        <img src="./img/img_6.png" alt="img_6">
+        <img src="./img/img_7.png" alt="img_7">
+        <img src="./img/img_8.png" alt="img_8">
+        <img src="./img/img_9.png" alt="img_9">
+        <br>
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
+        <br>
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_4-3" target="_blank">Посилання на гілку на github.com</a>
+    </main>
+    <footer>
+        <h4>Анастасія Лизогуб</h4>
+    </footer>
+    <script src="index.js"></script>
 </body>
 </html>

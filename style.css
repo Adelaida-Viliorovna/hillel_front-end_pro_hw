@@ -1,0 +1,14 @@
+.code {
+    background-color: #1a1a1a;
+    border: 1px solid #000000;
+    color: #ffffff;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    border-radius: 5px;
+    overflow: auto;
+    max-width: 900px;
+}
+
+img {
+    border-radius: 15px;
+}
