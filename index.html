@@ -35,12 +35,42 @@
         <div class="code">
             <pre>
                 <code>
-   
+    let numOrStr = prompt('input number or string');
+    alert(numOrStr);
+    
+    switch(true){
+        case numOrStr === null: 
+            alert('ви скасували');
+            break;
+        case numOrStr.trim() === '':
+            alert('Empty String');
+            break;
+        case isNaN(+numOrStr):
+            alert(' number is Ba_NaN');
+            break;
+        default:
+            alert('OK!');
+    }
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <p>Число</p>
+        <img src="./img/img_1.png" alt="img_1">
+        <img src="./img/img_2.png" alt="img_2">
+        <img src="./img/img_3.png" alt="img_3">
+        <p>Строка</p>
+        <img src="./img/img_4.png" alt="img_4">
+        <img src="./img/img_5.png" alt="img_5">
+        <img src="./img/img_6.png" alt="img_6">
+        <p>Пуста строка</p>
+        <img src="./img/img_7.png" alt="img_7">
+        <img src="./img/img_8.png" alt="img_8">
+        <img src="./img/img_9.png" alt="img_9">
+        <p>Скасування</p>
+        <img src="./img/img_10.png" alt="img_10">
+        <img src="./img/img_11.png" alt="img_11">
+        <img src="./img/img_12.png" alt="img_12">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
