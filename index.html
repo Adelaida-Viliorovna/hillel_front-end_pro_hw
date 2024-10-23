@@ -21,12 +21,37 @@
         <div class="code">
             <pre>
                 <code>
-        
+    const num = prompt("Введіть тризначне число");
+    if (num.length === 3 && !isNaN(num)) {
+        const num1 = num[0];
+        const num2 = num[1];
+        const num3 = num[2];
+    
+        if (num1 === num2 && num2 === num3) {
+            alert("Всі числа однакові!");
+        } else {
+            if (num1 === num2 || num2 === num3 || num1 === num3) {
+                alert("Є дві однакові цифри!");
+            } else {
+                alert("Всі цифри різні!");
+            }
+        }
+    
+    } else {
+        alert("Введено не число або не тризначне число!");
+    }
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/img_1.png" alt="img_1">
+        <img src="./img/img_2.png" alt="img_2"><br>
+        <img src="./img/img_3.png" alt="img_3">
+        <img src="./img/img_4.png" alt="img_4"><br>
+        <img src="./img/img_5.png" alt="img_5">
+        <img src="./img/img_6.png" alt="img_6"><br>
+        <img src="./img/img_7.png" alt="img_7">
+        <img src="./img/img_8.png" alt="img_8">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
