@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_5-3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 5.3</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Пошук потрібних чисел</h2>
+        <p>Дано ціле число N (ввести через prompt). Вивести всі цілі числа від 1 до 100, квадрат яких не перевищує числа N</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    const x = prompt('enter a number');
+    let result = '';
+    for (let i = 1; i<=100; i++){
+        if (i*i <= x){
+            result += i + ' ';
+        }
+    }
+    alert(result.trim());
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/1_img.png" alt="enter_img">
+        <img src="./img/2_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_5-3" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
