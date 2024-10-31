@@ -3,30 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_6-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 6.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Написати функцію видалення масиву символів</h2>
+        <p>Створити функцію, яка прибирає з рядка всі символи, 
+            які ми передали другим аргументом. 'func(" hello world", ['l', 'd'])' 
+            поверне нам "heo wor". Вихідний рядок та символи для видалення задає користувач.
+        </p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    const str = prompt("Введіть рядок:", "hello world");
+    const charsToRemove = prompt("Введіть символи для видалення (через кому):", "l,d").split(',');
+    
+    function removeChars(str = "hello world", charsToRemove = ['l', 'd']) {
+        // let result = str;
+        // for (let char of charsToRemove) {
+        //     result = result.split(char).join('');
+        // }
+        let result = "";
+        for (let i = 0; i < str.length; i++) {
+            let found = false;
+            for (let j = 0; j < charsToRemove.length; j++) {
+                if (str[i] === charsToRemove[j]) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                result += str[i];
+            }
+        }
+        alert(`Задана строка: ${str}\nСимволи для видалення: ${charsToRemove}\nРезультат: ${result}`);
+    }
+    
+    removeChars(str, charsToRemove);                    
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/1_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_6-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
