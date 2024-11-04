@@ -3,30 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_7-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 7.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Замикання</h2>
+        <p>Написати функцію, яка приймає 1 параметр. 
+            Та скадае значення з тим, що передали перший раз 
+            і т. д. Все це із замиканнями, наприклад: <br>
+            console.log(sum(4)); // 4 <br>
+            console.log(sum(6)); // 10 <br>
+            console.log(sum(10)); // 20 <br>
+            console.log(sum(7)); // 27</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    function createSum() {
+        let total = 0;
+        return function (num) {
+            total += num;
+            return total;
+        };
+    }
+    
+    const sum = createSum();
+    
+    console.log(sum(4)); 
+    console.log(sum(6)); 
+    console.log(sum(10));
+    console.log(sum(7)); 
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_7-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
