@@ -3,30 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_11-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 11.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Таблиця піфагора</h2>
+        <p>
+            Вивести таблицю Піфагора (10×10), таблиця 
+            повинна бути створена динамічно
+        </p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
+    const tableDiv = document.getElementById('pifagor-table');
+    const table = document.createElement('table');
+    
+    for (let i=1; i <= 10; i++) {
+        const row = document.createElement('tr');
+        for (let j=1; j <= 10; j++) {
+            const cell = document.createElement('td');
+            cell.textContent = i * j;
+            row.appendChild(cell);
+    
+            cell.style.border = '1px solid black';
+            cell.style.padding = '6px';
+            cell.style.textAlign = 'center';
+    
+            if (i === 1 || j === 1) {
+                cell.style.backgroundColor = 'yellow';
+            } else if (i === j) {
+                cell.style.backgroundColor = 'lightblue';
+            }
+        }
         
+        table.appendChild(row);
+        
+    }
+    
+    tableDiv.appendChild(table);
+    
+    table.style.borderCollapse = 'collapse';
+    table.style.border = '4px solid black';
+    table.style.margin = '10px';
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <div id="pifagor-table"></div>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_11-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
