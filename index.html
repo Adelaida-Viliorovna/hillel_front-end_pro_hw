@@ -22,7 +22,18 @@
         <div class="code">
             <pre>
                 <code>
-        
+    const imageContainer = document.getElementById('image-container');
+    const randomButton = document.getElementById('random-btn');
+    
+    const img = document.createElement('img');
+    
+    randomButton.addEventListener('click', () => {
+        const randomIndex = Math.floor(Math.random() * 10) + 1;
+        img.src = `./img/${randomIndex}.png`;
+        img.alt = 'Random img';
+        img.style.height = '400px';
+    })
+    imageContainer.appendChild(img);
                 </code>
             </pre>
         </div>
