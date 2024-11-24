@@ -3,30 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_12-2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 12.2</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Використання подій</h2>
+        <p>Створіть HTML-сторінку з декількома кнопками. 
+            Ваше завдання - створити обробник подій для 
+            батьківського елементу, який відслідковуватиме 
+            кліки на всіх кнопках.
+        </p>
+        <p>Покроковий план:</p>
+        <ol>
+            <li>
+                Створіть HTML-елементи: батьківський контейнер з декількома вкладеними кнопками.
+            </li>
+            <li>
+                Додайте обробник подій до батьківського контейнера, який відслідковуватиме кліки.
+            </li>
+            <li>
+                Після кліку на будь-якій кнопці, виведіть повідомлення про те, яка саме кнопка була клікнута.
+            </li>
+        </ol>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    document.getElementById("button-container").addEventListener("click", (e) => {
+        if (e.target.tagName === "BUTTON") {
+            alert(`Ви натиснули: ${e.target.textContent}`);
+        }
+    })
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <div id="button-container">
+            <button>Кнопка 1</button>
+            <button>Кнопка 2</button>
+            <button>Кнопка 3</button>
+        </div>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_12-2" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
