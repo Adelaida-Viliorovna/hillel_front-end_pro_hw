@@ -3,16 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_13-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 13.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>13.1. Валідація з RegEx</h2>
+        <p>Доробити валідацію для надсилання повідомлення з використанням регулярних виразів:</p>
+        <p>Поля:</p>
+        <ul>
+            <li>Name - обов'язкове текстове поле</li>
+            <li>Message - текстове поле не менше 5 символів</li>
+            <li>Phone number - обов'язкове поле типу phone. З початком на +380</li>
+            <li>Email - email обов'язково повинен мати @ та крапку</li>
+        </ul>
+        <p>Після відправки, в консоль відображаємо дані, які ввів користувач.</p>
+        <p>Під час помилки показувати її під полем.</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
@@ -22,11 +31,21 @@
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <div class="main_contact-page__form">
+            <h1 class="main_contact-page__h1">We would like to help you</h1>
+            <form id="user-form" class="main_contact-page__contact-form">
+                <input id="username" name="username" class="input main_contact-page__name" type="text" placeholder="Name" required>
+                <textarea id="message" name="message" rows="6" class="input main_contact-page__message" type="text" placeholder="Message" required></textarea>
+                <label class="input main_contact-page__label" for="phone_number">How to answer you?</label>
+                <input id="phone" name="phone" class="input main_contact-page__contact-phone" type="tel" id="phone_number" placeholder="Phone number" required>
+                <input id="email" name="email" class="input main_contact-page__contact-mail" type="email" placeholder="Email" required>
+                <button type="submit" class="main_contact-page__form-btn">Send message</button>
+            </form>
+        </div>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_13-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
