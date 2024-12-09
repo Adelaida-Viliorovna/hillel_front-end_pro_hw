@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Форма Допомоги</title>
+  <link rel="stylesheet" href="lesson.css">
+</head>
+<body>
+  <div class="form-container">
+    <h1>Ми хотіли б вам допомогти</h1>
+    <form id="helpForm">
+      <div class="form-group">
+        <label>Ім'я</label>
+        <input type="text" name="name" data-required="true" placeholder="Ім'я">
+        <span class="error-message">Ім'я обов'язкове</span>
+      </div>
+      <div class="form-group">
+        <label>Повідомлення</label>
+        <textarea name="message" data-required="true" data-minlength="5" placeholder="Повідомлення"></textarea>
+        <span class="error-message">Мінімальна довжина 5 символів</span>
+      </div>
+      <h2>Як вам відповісти?</h2>
+      <div class="form-group">
+        <input type="text" name="phone" placeholder="Номер телефону">
+      </div>
+      <div class="form-group">
+        <input type="email" name="email" data-required="true" placeholder="Email">
+        <span class="error-message">Електронна пошта обов'язкова</span>
+      </div>
+      <div class="form-group">
+        <input type="text" name="address" placeholder="Адреса">
+      </div>
+      <button type="submit" class="submit-button">Відправити</button>
+    </form>
+  </div>
+  <script src="lesson.js"></script>
+</body>
+</html>
