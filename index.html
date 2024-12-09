@@ -1,18 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_15-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 15.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>TODO з WebStorage</h2>
+        <p>Доробити TODO лист, в якому буде можливість:</p>
+        <ol>
+            <li>Додати завдання</li>
+            <li>Видалити завдання</li>
+            <li>Відзначити як виконану</li>
+            <li>Усі дані повинні зберегтися після перезавантаження сторінки.</li>
+        </ol>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
@@ -22,15 +30,192 @@
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <a href="./hw.html">HW_15-1</a>
         <br>
-        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <hr>
+        <br>
+        <br>
+        <h2>Завдання з лекції 15</h2>
+        <p>Реалізувати скрипт який матиме:</p>
+        <ul>
+            <li>Можливість додавання нових користувачів до таблиці</li>
+            <li>Кнопки "Edit", "Remove", "View" біля кожного користувача. Для редагування потрібно перевикористовувати
+                форму додавання</li>
+            <li>При натисканні на кнопку "View" відкриваються дані користувача в блоці внизу сторінки</li>
+            <li>При натисканні на кнопку "Edit" з'являється можливість редагувати дані. Дані зберігаються при натисканні
+                на кнопку Save</li>
+            <li>При натисканні на кнопку "Remove" користувач видаляється. Обов'язкове підтвердження видалення</li>
+        </ul>
+        <p>Усі зміни у списку повинні зберігатись після оновлення сторінки</p>
+        <h3>Скрипт:</h3>
+        <div class="code">
+            <pre>
+                <code>
+                    const userTable = document.querySelector('#user-table tbody');
+                    const userForm = document.getElementById('user-form');
+                    const errorName = document.getElementById('error-name');
+                    const errorPhone = document.getElementById('error-phone');
+                    const viewBlock = document.getElementById('view-block');
+                    const addUserBtn = document.getElementById('add-user-btn');
+                    
+                    let users = localStorage.getItem('users') 
+                        ? JSON.parse(localStorage.getItem('users')) 
+                        : [];
+                    let editingUserId = null;
+                    
+                    const renderUsers = () => {
+                        userTable.innerHTML = '';
+                        users.forEach(user => {
+                            const row = document.createElement('tr');
+                            row.innerHTML = `
+                            &lt;td>${user.id}&lt;/td>
+                            &lt;td>${user.name}&lt;/td>
+                            &lt;td>${user.phone}&lt;/td>
+                            &lt;td>${user.age}&lt;/td>
+                            &lt;td>
+                            &lt;button onclick="viewUser(${user.id})">View&lt;/button>
+                            &lt;button onclick="editUser(${user.id})">Edit&lt;/button>
+                            &lt;button onclick="removeUser(${user.id})">Delete&lt;/button>
+                            &lt;/td>
+                            `;
+                            userTable.appendChild(row);
+                        });
+                    };
+                    
+                    const validatePhone = (phone) => {
+                        const phoneRegex = /^\+380\d{9}$/;
+                        return phoneRegex.test(phone);
+                    };
+                    
+                    const toggleForm = () => {
+                        userForm.style.display = userForm.style.display === 'none' ? 'flex' : 'none';
+                    };
+                    
+                    const toggleViewBlock = () => {
+                        viewBlock.style.display = viewBlock.style.display === 'none' ? 'block' : 'none';
+                    };
+                    
+                    userForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                    
+                        const formData = new FormData(userForm);
+                        const { name, phone, age } = Object.fromEntries(formData);
+                    
+                        let isValid = true;
+                    
+                        if (!name.trim()) {
+                            errorName.textContent = 'Name is required';
+                            isValid = false;
+                        } else {
+                            errorName.textContent = '';
+                        }
+                    
+                        if (!validatePhone(phone.trim())) {
+                            errorPhone.textContent = 'Invalid phone format. Use +380XXXXXXXXX';
+                            isValid = false;
+                        } else {
+                            errorPhone.textContent = '';
+                        }
+                    
+                        if (isValid) {
+                            if (editingUserId !== null) {
+                                const userIndex = users.findIndex(user => user.id === editingUserId);
+                                users[userIndex] = { id: editingUserId, name, phone, age };
+                                editingUserId = null;
+                            } else {
+                                const newUser = {
+                                    id: Date.now(),
+                                    name,
+                                    phone,
+                                    age
+                                };
+                                users.push(newUser);
+                            }
+                    
+                            localStorage.setItem('users', JSON.stringify(users));
+                            renderUsers();
+                            userForm.reset();
+                            toggleForm();
+                        }
+                    });
+                    
+                    const viewUser = (id) => {
+                        const user = users.find(user => user.id === id);
+                        viewBlock.textContent = JSON.stringify(user, null, 2);
+                        toggleViewBlock();
+                    };
+                    
+                    const editUser = (id) => {
+                        const user = users.find(user => user.id === id);
+                        const { name, phone, age } = user;
+                    
+                        userForm.name.value = name;
+                        userForm.phone.value = phone;
+                        userForm.age.value = age;
+                    
+                        editingUserId = id;
+                        toggleForm();
+                    };
+                    
+                    const removeUser = (id) => {
+                        if (confirm('Are you sure you want to delete this user?')) {
+                            users = users.filter(user => user.id !== id);
+                            localStorage.setItem('users', JSON.stringify(users));
+                            renderUsers();
+                        }
+                    };
+                    
+                    addUserBtn.addEventListener('click', toggleForm);
+                    
+                    renderUsers();
+                </code>
+            </pre>
+        </div>
+        <h3>Результат:</h3>
+        <h1>User Management</h1>
+
+        <table id="user-table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Phone</th>
+                    <th>Age</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+
+        <button id="add-user-btn">Add User</button>
+
+        <form id="user-form" style="display: none;">
+            <input type="text" name="name" placeholder="User" required>
+            <span class="error-message" id="error-name"></span>
+            <input type="text" name="phone" placeholder="+380935544498" required>
+            <span class="error-message" id="error-phone"></span>
+            <input type="number" name="age" placeholder="30" required>
+            <button id="save-btn" type="submit">OK</button>
+        </form>
+
+        <h2>View User</h2>
+        <pre id="view-block" style="display: none;">No user selected</pre>
+
+        <br>
+        <hr>
+        <br>
+
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на
+            репозиторій github.com</a>
+        <br>
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_15-1" target="_blank">Посилання
+            на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
     </footer>
     <script src="index.js"></script>
 </body>
+
 </html>
