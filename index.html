@@ -25,7 +25,57 @@
         <div class="code">
             <pre>
                 <code>
-        
+    document.addEventListener('DOMContentLoaded', () => {
+        const todoForm = document.getElementById('todo-form');
+        const todoInput = document.getElementById('todo-input');
+        const todoList = document.getElementById('todo-list');
+    
+        let todos = localStorage.getItem('todos') 
+        ? JSON.parse(localStorage.getItem('todos')) 
+        : [];
+    
+        function renderTodos() {
+            todoList.innerHTML = '';
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.className = `todo-item ${todo.completed ? 'todo-item--checked' : ''}`;
+                li.innerHTML = `
+                &lt;input type="checkbox" ${todo.completed ? 'checked' : ''} data-index="${index}">
+                &lt;span class="todo-item__description">${todo.text}&lt;/span>
+                &lt;button class="todo-item__delete" data-index="${index}">Delete&lt;/button>
+                `;
+                todoList.appendChild(li);
+            });
+        }
+    
+        todoForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const newTodo = { text: todoInput.value.trim(), completed: false };
+            if (newTodo.text) {
+                todos.push(newTodo);
+                localStorage.setItem('todos', JSON.stringify(todos));
+                renderTodos();
+                todoForm.reset();
+            }
+        });
+    
+        todoList.addEventListener('click', (event) => {
+            const index = event.target.dataset.index;
+            
+            if (event.target.tagName === 'INPUT') {
+                todos[index].completed = event.target.checked;
+            } else if (event.target.classList.contains('todo-item__delete')) {
+                todos.splice(index, 1);
+                localStorage.setItem('todos', JSON.stringify(todos));
+                event.target.parentElement.remove();
+            }
+    
+            localStorage.setItem('todos', JSON.stringify(todos));
+            renderTodos();
+        });
+    
+        renderTodos();
+    });
                 </code>
             </pre>
         </div>
@@ -52,123 +102,123 @@
         <div class="code">
             <pre>
                 <code>
-                    const userTable = document.querySelector('#user-table tbody');
-                    const userForm = document.getElementById('user-form');
-                    const errorName = document.getElementById('error-name');
-                    const errorPhone = document.getElementById('error-phone');
-                    const viewBlock = document.getElementById('view-block');
-                    const addUserBtn = document.getElementById('add-user-btn');
-                    
-                    let users = localStorage.getItem('users') 
-                        ? JSON.parse(localStorage.getItem('users')) 
-                        : [];
-                    let editingUserId = null;
-                    
-                    const renderUsers = () => {
-                        userTable.innerHTML = '';
-                        users.forEach(user => {
-                            const row = document.createElement('tr');
-                            row.innerHTML = `
-                            &lt;td>${user.id}&lt;/td>
-                            &lt;td>${user.name}&lt;/td>
-                            &lt;td>${user.phone}&lt;/td>
-                            &lt;td>${user.age}&lt;/td>
-                            &lt;td>
-                            &lt;button onclick="viewUser(${user.id})">View&lt;/button>
-                            &lt;button onclick="editUser(${user.id})">Edit&lt;/button>
-                            &lt;button onclick="removeUser(${user.id})">Delete&lt;/button>
-                            &lt;/td>
-                            `;
-                            userTable.appendChild(row);
-                        });
-                    };
-                    
-                    const validatePhone = (phone) => {
-                        const phoneRegex = /^\+380\d{9}$/;
-                        return phoneRegex.test(phone);
-                    };
-                    
-                    const toggleForm = () => {
-                        userForm.style.display = userForm.style.display === 'none' ? 'flex' : 'none';
-                    };
-                    
-                    const toggleViewBlock = () => {
-                        viewBlock.style.display = viewBlock.style.display === 'none' ? 'block' : 'none';
-                    };
-                    
-                    userForm.addEventListener('submit', (e) => {
-                        e.preventDefault();
-                    
-                        const formData = new FormData(userForm);
-                        const { name, phone, age } = Object.fromEntries(formData);
-                    
-                        let isValid = true;
-                    
-                        if (!name.trim()) {
-                            errorName.textContent = 'Name is required';
-                            isValid = false;
-                        } else {
-                            errorName.textContent = '';
-                        }
-                    
-                        if (!validatePhone(phone.trim())) {
-                            errorPhone.textContent = 'Invalid phone format. Use +380XXXXXXXXX';
-                            isValid = false;
-                        } else {
-                            errorPhone.textContent = '';
-                        }
-                    
-                        if (isValid) {
-                            if (editingUserId !== null) {
-                                const userIndex = users.findIndex(user => user.id === editingUserId);
-                                users[userIndex] = { id: editingUserId, name, phone, age };
-                                editingUserId = null;
-                            } else {
-                                const newUser = {
-                                    id: Date.now(),
-                                    name,
-                                    phone,
-                                    age
-                                };
-                                users.push(newUser);
-                            }
-                    
-                            localStorage.setItem('users', JSON.stringify(users));
-                            renderUsers();
-                            userForm.reset();
-                            toggleForm();
-                        }
-                    });
-                    
-                    const viewUser = (id) => {
-                        const user = users.find(user => user.id === id);
-                        viewBlock.textContent = JSON.stringify(user, null, 2);
-                        toggleViewBlock();
-                    };
-                    
-                    const editUser = (id) => {
-                        const user = users.find(user => user.id === id);
-                        const { name, phone, age } = user;
-                    
-                        userForm.name.value = name;
-                        userForm.phone.value = phone;
-                        userForm.age.value = age;
-                    
-                        editingUserId = id;
-                        toggleForm();
-                    };
-                    
-                    const removeUser = (id) => {
-                        if (confirm('Are you sure you want to delete this user?')) {
-                            users = users.filter(user => user.id !== id);
-                            localStorage.setItem('users', JSON.stringify(users));
-                            renderUsers();
-                        }
-                    };
-                    
-                    addUserBtn.addEventListener('click', toggleForm);
-                    
-                    renderUsers();
+    const userTable = document.querySelector('#user-table tbody');
+    const userForm = document.getElementById('user-form');
+    const errorName = document.getElementById('error-name');
+    const errorPhone = document.getElementById('error-phone');
+    const viewBlock = document.getElementById('view-block');
+    const addUserBtn = document.getElementById('add-user-btn');
+    
+    let users = localStorage.getItem('users') 
+        ? JSON.parse(localStorage.getItem('users')) 
+        : [];
+    let editingUserId = null;
+    
+    const renderUsers = () => {
+        userTable.innerHTML = '';
+        users.forEach(user => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            &lt;td>${user.id}&lt;/td>
+            &lt;td>${user.name}&lt;/td>
+            &lt;td>${user.phone}&lt;/td>
+            &lt;td>${user.age}&lt;/td>
+            &lt;td>
+            &lt;button onclick="viewUser(${user.id})">View&lt;/button>
+            &lt;button onclick="editUser(${user.id})">Edit&lt;/button>
+            &lt;button onclick="removeUser(${user.id})">Delete&lt;/button>
+            &lt;/td>
+            `;
+            userTable.appendChild(row);
+        });
+    };
+    
+    const validatePhone = (phone) => {
+        const phoneRegex = /^\+380\d{9}$/;
+        return phoneRegex.test(phone);
+    };
+    
+    const toggleForm = () => {
+        userForm.style.display = userForm.style.display === 'none' ? 'flex' : 'none';
+    };
+    
+    const toggleViewBlock = () => {
+        viewBlock.style.display = viewBlock.style.display === 'none' ? 'block' : 'none';
+    };
+    
+    userForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+    
+        const formData = new FormData(userForm);
+        const { name, phone, age } = Object.fromEntries(formData);
+    
+        let isValid = true;
+    
+        if (!name.trim()) {
+            errorName.textContent = 'Name is required';
+            isValid = false;
+        } else {
+            errorName.textContent = '';
+        }
+    
+        if (!validatePhone(phone.trim())) {
+            errorPhone.textContent = 'Invalid phone format. Use +380XXXXXXXXX';
+            isValid = false;
+        } else {
+            errorPhone.textContent = '';
+        }
+    
+        if (isValid) {
+            if (editingUserId !== null) {
+                const userIndex = users.findIndex(user => user.id === editingUserId);
+                users[userIndex] = { id: editingUserId, name, phone, age };
+                editingUserId = null;
+            } else {
+                const newUser = {
+                    id: Date.now(),
+                    name,
+                    phone,
+                    age
+                };
+                users.push(newUser);
+            }
+    
+            localStorage.setItem('users', JSON.stringify(users));
+            renderUsers();
+            userForm.reset();
+            toggleForm();
+        }
+    });
+    
+    const viewUser = (id) => {
+        const user = users.find(user => user.id === id);
+        viewBlock.textContent = JSON.stringify(user, null, 2);
+        toggleViewBlock();
+    };
+    
+    const editUser = (id) => {
+        const user = users.find(user => user.id === id);
+        const { name, phone, age } = user;
+    
+        userForm.name.value = name;
+        userForm.phone.value = phone;
+        userForm.age.value = age;
+    
+        editingUserId = id;
+        toggleForm();
+    };
+    
+    const removeUser = (id) => {
+        if (confirm('Are you sure you want to delete this user?')) {
+            users = users.filter(user => user.id !== id);
+            localStorage.setItem('users', JSON.stringify(users));
+            renderUsers();
+        }
+    };
+    
+    addUserBtn.addEventListener('click', toggleForm);
+    
+    renderUsers();
                 </code>
             </pre>
         </div>
