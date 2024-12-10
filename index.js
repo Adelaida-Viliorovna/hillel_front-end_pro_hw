@@ -1,49 +1,47 @@
-class Student {
-  constructor(firstName, lastName, birthYear) {
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.birthYear = birthYear;
-    this.grades = [];
-    this.attendance = new Array(25).fill(null);
-  }
+function Student(firstName, lastName, birthYear) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.birthYear = birthYear;
+  this.grades = [];
+  this.attendance = new Array(25).fill(null);
 
-  getAge() {
+  this.getAge = function () {
     return new Date().getFullYear() - this.birthYear;
-  }
+  };
 
-  addGrade(grade) {
+  this.addGrade = function (grade) {
     this.grades.push(grade);
-  }
+  };
 
-  getAverageGrade() {
+  this.getAverageGrade = function () {
     const sum = this.grades.reduce((acc, grade) => acc + grade, 0);
     return this.grades.length ? sum / this.grades.length : 0;
-  }
+  };
 
-  present() {
+  this.present = function () {
     this.recordAttendance(true);
-  }
+  };
 
-  absent() {
+  this.absent = function () {
     this.recordAttendance(false);
-  }
+  };
 
-  recordAttendance(status) {
+  this.recordAttendance = function (status) {
     const index = this.attendance.indexOf(null);
     if (index !== -1) {
       this.attendance[index] = status;
     } else {
       console.log("Масив відвідуваності заповнений.");
     }
-  }
+  };
 
-  getAttendanceRate() {
+  this.getAttendanceRate = function () {
     const presentDays = this.attendance.filter((day) => day === true).length;
     const totalDays = this.attendance.filter((day) => day !== null).length;
     return totalDays ? presentDays / totalDays : 0;
-  }
+  };
 
-  summary() {
+  this.summary = function () {
     const avgGrade = this.getAverageGrade();
     const attendanceRate = this.getAttendanceRate();
     if (avgGrade >= 90 && attendanceRate >= 0.9) {
@@ -53,15 +51,16 @@ class Student {
     } else {
       return "Редиска!";
     }
-  }
+  };
 
-  getStudentInfo() {
-    console.log(this.firstName + ' ' + this.lastName + ', ' + this.getAge() + ' років:');
-    console.log('Середній бал: ' + this.getAverageGrade());
-    console.log('Середнє відвідування: ' + this.getAttendanceRate());
+  this.getStudentInfo = function () {
+    console.log(
+      this.firstName + " " + this.lastName + ", " + this.getAge() + " років:"
+    );
+    console.log("Середній бал: " + this.getAverageGrade());
+    console.log("Середнє відвідування: " + this.getAttendanceRate());
     console.log(this.summary());
-  }
-  
+  };
 }
 
 const student1 = new Student("Іван", "Іванов", 2000);
