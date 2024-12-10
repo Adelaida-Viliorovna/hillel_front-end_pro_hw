@@ -72,3 +72,12 @@ student1.present();
 student1.absent();
 
 student1.getStudentInfo();
+
+const student2 = new Student("Марина", "Маринівна", 2001);
+student2.addGrade(98);
+student2.addGrade(95);
+student2.present();
+student2.present();
+student2.present();
+
+student2.getStudentInfo();
