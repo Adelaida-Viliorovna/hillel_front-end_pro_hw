@@ -1,36 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hw_18-1</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Home Work № </h1>
-    </header>
-    <main>
-        <h2>Назва</h2>
-        
-        <h3>Скрипт:</h3>
-        <div class="code">
-            <pre>
+  <header>
+    <h1>Home Work № 18.1</h1>
+  </header>
+  <main>
+    <h2>Таймер відліку</h2>
+    <p>Реалізувати таймер відліку:</p>
+    <ol>
+      <li>Початок таймера визначати із змінної</li>
+      <li>Відобразити на сторінці час у форматі 01:25</li>
+      <li>Коли закінчився таймер зупинити його</li>
+    </ol>
+    <h3>Скрипт:</h3>
+    <div class="code">
+      <pre>
                 <code>
-        
+    class Timer {
+      constructor(durationInSeconds, displayElementId) {
+          this.totalTime = durationInSeconds;
+          this.remainangTime = durationInSeconds;
+          this.displayElement = document.getElementById(displayElementId);
+          this.timerId = null;
+      }
+  
+      formatTime(timeInSeconds) {
+          const minutes = String(Math.floor(timeInSeconds / 60)).padStart(2, "0");
+          const seconds = String(timeInSeconds % 60).padStart(2, "0");
+          return `${minutes}:${seconds}`;
+      }
+  
+      updateDisplay() {
+          this.displayElement.textContent = this.formatTime(this.remainangTime);
+      }
+  
+      stop() {
+          clearInterval(this.timerId);
+          this.timerId = null;
+      }
+  
+      start() {
+          if (this.timerId !== null) {
+              return;
+          }
+          this.updateDisplay();
+          this.timerId = setInterval(() => {
+              this.remainangTime--;
+              this.updateDisplay();
+              if (this.remainangTime &lt;= 0) {
+                  this.stop();
+                  alert("Час вийшов!");
+              }
+          }, 1000);
+      }
+  }
+  
+  const timer = new Timer(85, "timer");
+  document.getElementById("startButton").addEventListener("click", () => timer.start());
+  document.getElementById("stopButton").addEventListener("click", () => timer.stop());
                 </code>
             </pre>
-        </div>
-        <h3>Результат:</h3>
-        
-        <br>
-        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
-        <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
-    </main>
-    <footer>
-        <h4>Анастасія Лизогуб</h4>
-    </footer>
-    <script src="index.js"></script>
+    </div>
+    <h3>Результат:</h3>
+    <h2>Таймер відліку</h2>
+    <p id="timer">00:00</p>
+    <button id="startButton">Старт</button>
+    <button id="stopButton">Стоп</button>
+    <br><br>
+    <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на
+      репозиторій github.com</a>
+    <br>
+    <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_18-1" target="_blank">Посилання на
+      гілку на github.com</a>
+  </main>
+  <footer>
+    <h4>Анастасія Лизогуб</h4>
+  </footer>
+  <script src="index.js"></script>
 </body>
+
 </html>
