@@ -44,6 +44,8 @@ function updateWeatherWidget(data) {
   document.getElementById("weather-icon").alt = weather[0].description;
 }
 
-refreshBtn.addEventListener("click", fetchWeather());
+refreshBtn.addEventListener("click", () => {
+  fetchWeather();
+});
 
 fetchWeather();
