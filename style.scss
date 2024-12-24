@@ -33,10 +33,17 @@ img {
         display: flex;
         justify-content: space-between;
         padding: 5px;
+        align-items: center;
 
         .completed {
             text-decoration: line-through;
             color: gray;
+        }
+
+        .todoCheckboxText {
+            display: flex;
+            gap: 5px;
+            align-items: center;
         }
     }
 }
