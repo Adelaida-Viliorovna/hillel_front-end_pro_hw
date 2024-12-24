@@ -14,15 +14,12 @@ img {
 }
 
 .slider {
-    height: 300px;
     .slider_img_div {
-        width: 500px !important; 
-        height: 300px !important; 
         margin: 0 5px 0 5px;
         
         img {
             width: 100%; 
-            height: 100%; 
+            height: 100%;
             object-fit: cover;
         }
     }
