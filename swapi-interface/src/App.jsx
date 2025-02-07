@@ -1,7 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchInfo, clearInfo } from './store/store';
+
 
 function App() {
+
+  const [query, setQuery] = useState('');
+  const dispatch = useDispatch();
+  const result = useSelector((state) => state.result);
+const loading = useSelector((state) => state.loading);
+const error = useSelector((state) => state.error);
+
+  const handleSearch = () => {
+      if (query.trim()) {
+          dispatch(fetchInfo(query));
+      }
+  };
+
   return (
     <div>
       {/* Header */}
@@ -85,9 +101,11 @@ function App() {
                 type="text"
                 className="form-control"
                 placeholder="people/1/"
+                value={query} 
+                onChange={(e) => setQuery(e.target.value)}
               />
               <span className="input-group-btn">
-                <button className="btn btn-primary">request</button>
+                <button onClick={handleSearch} className="btn btn-primary">request</button>
               </span>
             </div>
             <small>
@@ -105,64 +123,36 @@ function App() {
               </a>
             </small>
             <p className="lead pad_top">Result:</p>
+            <button onClick={() => dispatch(clearInfo())}>Clear</button>
             <div className="well">
-              <pre id="interactive_output" className="pre-scrollable">
-                {JSON.stringify({
-                  name: "Luke Skywalker",
-                  height: "172",
-                  mass: "77",
-                  hair_color: "blond",
-                  skin_color: "fair",
-                  eye_color: "blue",
-                  birth_year: "19BBY",
-                  gender: "male",
-                  homeworld: "https://swapi.dev/api/planets/1/",
-                  films: [
-                    "https://swapi.dev/api/films/2/",
-                    "https://swapi.dev/api/films/6/",
-                    "https://swapi.dev/api/films/3/",
-                    "https://swapi.dev/api/films/1/",
-                    "https://swapi.dev/api/films/7/",
-                  ],
-                  species: ["https://swapi.dev/api/species/1/"],
-                  vehicles: [
-                    "https://swapi.dev/api/vehicles/14/",
-                    "https://swapi.dev/api/vehicles/30/",
-                  ],
-                  starships: [
-                    "https://swapi.dev/api/starships/12/",
-                    "https://swapi.dev/api/starships/22/",
-                  ],
-                  created: "2014-12-09T13:50:51.644000Z",
-                  edited: "2014-12-20T21:17:56.891000Z",
-                  url: "https://swapi.dev/api/people/1/",
-                }, null, 2)}
-              </pre>
+            {loading && <p>Loading...</p>}
+            {error && <p style={{ color: 'red' }}>{error}</p>}
+            {result && <pre id="interactive_output" className="pre-scrollable">{JSON.stringify(result, null, 2)}</pre>}
             </div>
           </div>
           <div className="col-sm-2 col-lg-2 col-md-2"></div>
         </div>
       </div>
-      <div class="row pad_bot">
-        <div class="col-sm-1 col-lg-1 col-md-1">
+      <div className="row pad_bot">
+        <div className="col-sm-1 col-lg-1 col-md-1">
         </div>
-        <div class="col-sm-3 col-lg-3 col-md-3">
-          <h4 class="center">What is this?</h4>
+        <div className="col-sm-3 col-lg-3 col-md-3">
+          <h4 className="center">What is this?</h4>
           <p>The Star Wars API, or "swapi" (Swah-pee) is the world's first quantified and programmatically-accessible data source for all the data from the Star Wars canon universe!</p>
           <p>We've taken all the rich contextual stuff from the universe and formatted into something easier to consume with software. Then we went and stuck an API on the front so you can access it all!</p>
         </div>
-        <div class="col-sm-4 col-lg-4 col-md-4">
-          <h4 class="center">How can I use it?</h4>
+        <div className="col-sm-4 col-lg-4 col-md-4">
+          <h4 className="center">How can I use it?</h4>
           <p>All the data is accessible through our HTTP web API. Consult our <a href="/documentation">documentation</a> if you'd like to get started.</p>
           <p>Helper libraries for popular programming languages are also provided so you can consume swapi in your favourite programming language, in a style that suits you.</p>
         </div>
-        <div class="col-sm-3 col-lg-3 col-md-3">
-          <h4 class="center">What happened with old swapi.co?</h4>
+        <div className="col-sm-3 col-lg-3 col-md-3">
+          <h4 className="center">What happened with old swapi.co?</h4>
           <p>swapi.co is not supported and maintained anymore. But since so many projects and tutorials used it as their educational
             playground, this is an "unofficial" branch.</p>
           <p>This project is open source and you can contribute <a href="https://github.com/Juriy/swapi">on GitHub</a>.</p>
         </div>
-        <div class="col-sm-1 col-lg-1 col-md-1">
+        <div className="col-sm-1 col-lg-1 col-md-1">
         </div>
       </div>
       <hr />
