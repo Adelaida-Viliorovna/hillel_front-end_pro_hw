@@ -8,14 +8,14 @@ function App() {
 
   const [query, setQuery] = useState('');
   const dispatch = useDispatch();
-  const result = useSelector((state) => state.result);
-const loading = useSelector((state) => state.loading);
-const error = useSelector((state) => state.error);
+  const result = useSelector((state) => state.api.result);
+  const loading = useSelector((state) => state.api.loading);
+  const error = useSelector((state) => state.api.error);
 
   const handleSearch = () => {
-      if (query.trim()) {
-          dispatch(fetchInfo(query));
-      }
+    if (query.trim()) {
+      dispatch(fetchInfo(query));
+    }
   };
 
   return (
