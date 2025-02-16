@@ -87,3 +87,8 @@ button {
 button:hover {
   background-color: #e53935;
 }
+
+li input[type="checkbox"]:checked ~ p {
+  color: gray;
+  text-decoration: line-through;
+}

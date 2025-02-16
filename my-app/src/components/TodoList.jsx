@@ -1,43 +1,92 @@
-import { useState } from "react";
+// my-app\src\components\TodoList.jsx
+
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const TodoList = () => {
-  const todos = useSelector((state) => state.todos);
-  const dispatch = useDispatch();
-  const [text, setText] = useState("");
 
-  const addTodo = () => {
-    if (text.trim()) {
-      dispatch({ type: "ADD_TODO", payload: text });
+  const [text, setText] = useState("");
+  const dispatch = useDispatch();
+  const todos = useSelector((state) => state.todos.todos);
+
+  useEffect(() => {
+    dispatch({ type: "FETCH_TODOS" });
+  }, [dispatch]);
+
+  const handleAddTodo = () => {
+    if (text.trim().length >= 5) {
+      dispatch({ type: "ADD_TODO_REQUEST", payload: text });
       setText("");
+    } else {
+      alert("Завдання повинно містити щонайменше 5 символів.");
     }
   };
 
-  const removeTodo = (index) => {
-    dispatch({ type: "REMOVE_TODO", payload: index });
+  const handleRemoveTodo = (id) => {
+    dispatch({ type: "REMOVE_TODO_REQUEST", payload: id });
   };
 
-  const clearTodos = () => {
-    dispatch({ type: "CLEAR_TODOS" });
+  const handleClearTodos = () => {
+    dispatch({ type: "CLEAR_TODOS_REQUEST" });
   };
+
+  const handleToggleComplete = (id, completed) => {
+    dispatch({ type: "TOGGLE_COMPLETE_TODO", payload: { id, completed: !completed } });
+  };
+  
+  // const todos = useSelector((state) => state.todos.todos);
+  // const dispatch = useDispatch();
+  // const [text, setText] = useState("");
+
+  // useEffect(() => {
+  //   dispatch(fetchTodos());
+  // }, [dispatch]);
+
+  // const handleAddTodo = () => {
+  //   if (text.trim().length >= 5) {
+  //     dispatch(addTodo(text));
+  //     setText("");
+  //   } else {
+  //     alert("Завдання повинно містити щонайменше 5 символів.");
+  //   }
+  // };
+
+  // const handleRemoveTodo = (id) => {
+  //   dispatch(removeTodo(id));
+  // };
+
+  // const handleClearTodos = () => {
+  //   dispatch(clearTodos());
+  // };
+
+  // const handleToggleComplete = (id, completed) => {
+  //   dispatch(completeTodo(id, !completed));
+  // };
 
   return (
     <div>
       <h1>TODO</h1>
       <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={addTodo}>Додати</button>
+      <button onClick={handleAddTodo}>Додати</button>
 
       <h2>TODOS</h2>
       <ul>
-        {todos.map((todo, index) => (
-          <li key={index}>
-            <p>{todo}</p>
-            <button onClick={() => removeTodo(index)}>Видалити</button>
+        {todos.map((todo) => (
+          <li key={todo._id}>
+            <input
+              type="checkbox"
+              checked={todo.completed}
+              onChange={() => handleToggleComplete(todo._id, todo.completed)}
+            />
+            <p style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+              {todo.text}
+            </p>
+            <button onClick={() => handleRemoveTodo(todo._id)}>Видалити</button>
           </li>
         ))}
       </ul>
       <p>Всього: {todos.length}</p>
-      <button onClick={clearTodos}>Очистити</button>
+      <button onClick={handleClearTodos}>Очистити</button>
     </div>
   );
 };
