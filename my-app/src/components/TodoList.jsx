@@ -34,40 +34,11 @@ const TodoList = () => {
     dispatch({ type: "TOGGLE_COMPLETE_TODO", payload: { id, completed: !completed } });
   };
   
-  // const todos = useSelector((state) => state.todos.todos);
-  // const dispatch = useDispatch();
-  // const [text, setText] = useState("");
-
-  // useEffect(() => {
-  //   dispatch(fetchTodos());
-  // }, [dispatch]);
-
-  // const handleAddTodo = () => {
-  //   if (text.trim().length >= 5) {
-  //     dispatch(addTodo(text));
-  //     setText("");
-  //   } else {
-  //     alert("Завдання повинно містити щонайменше 5 символів.");
-  //   }
-  // };
-
-  // const handleRemoveTodo = (id) => {
-  //   dispatch(removeTodo(id));
-  // };
-
-  // const handleClearTodos = () => {
-  //   dispatch(clearTodos());
-  // };
-
-  // const handleToggleComplete = (id, completed) => {
-  //   dispatch(completeTodo(id, !completed));
-  // };
-
   return (
     <div>
       <h1>TODO</h1>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={handleAddTodo}>Додати</button>
+      <input name="input-new-todo" value={text} onChange={(e) => setText(e.target.value)} />
+      <button name="add-new-todo" onClick={handleAddTodo}>Додати</button>
 
       <h2>TODOS</h2>
       <ul>
@@ -81,12 +52,12 @@ const TodoList = () => {
             <p style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
               {todo.text}
             </p>
-            <button onClick={() => handleRemoveTodo(todo._id)}>Видалити</button>
+            <button name="dlt-todo" onClick={() => handleRemoveTodo(todo._id)}>Видалити</button>
           </li>
         ))}
       </ul>
       <p>Всього: {todos.length}</p>
-      <button onClick={handleClearTodos}>Очистити</button>
+      <button name="dlt-all-todos" onClick={handleClearTodos}>Очистити</button>
     </div>
   );
 };
