@@ -7,7 +7,7 @@ const TodoList = () => {
 
   const [text, setText] = useState("");
   const dispatch = useDispatch();
-  const todos = useSelector((state) => state.todos.todos);
+  const todos = useSelector((state) => state.api.todos);
 
   useEffect(() => {
     dispatch({ type: "FETCH_TODOS" });
@@ -33,35 +33,6 @@ const TodoList = () => {
   const handleToggleComplete = (id, completed) => {
     dispatch({ type: "TOGGLE_COMPLETE_TODO", payload: { id, completed: !completed } });
   };
-  
-  // const todos = useSelector((state) => state.todos.todos);
-  // const dispatch = useDispatch();
-  // const [text, setText] = useState("");
-
-  // useEffect(() => {
-  //   dispatch(fetchTodos());
-  // }, [dispatch]);
-
-  // const handleAddTodo = () => {
-  //   if (text.trim().length >= 5) {
-  //     dispatch(addTodo(text));
-  //     setText("");
-  //   } else {
-  //     alert("Завдання повинно містити щонайменше 5 символів.");
-  //   }
-  // };
-
-  // const handleRemoveTodo = (id) => {
-  //   dispatch(removeTodo(id));
-  // };
-
-  // const handleClearTodos = () => {
-  //   dispatch(clearTodos());
-  // };
-
-  // const handleToggleComplete = (id, completed) => {
-  //   dispatch(completeTodo(id, !completed));
-  // };
 
   return (
     <div>

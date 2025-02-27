@@ -1,9 +1,27 @@
-// my-app\src\store\workers.js
-
 import { call, put } from "redux-saga/effects";
 import axios from "axios";
-import { setTodos, addTodo, removeTodo, clearTodos, toggleComplete } from "./store";
+import {
+  setInfo,
+  fetchInfoError,
+  setTodos,
+  addTodo,
+  removeTodo,
+  clearTodos,
+  toggleComplete,
+} from "./store";
 
+function fetchFromApi(query) {
+  return axios.get(`https://swapi.dev/api/${query}`);
+}
+
+export function* callFetchInfoStart(action) {
+  try {
+    const response = yield call(fetchFromApi, action.payload);
+    yield put(setInfo(response.data));
+  } catch (error) {
+    yield put(fetchInfoError(error.message));
+  }
+}
 export function* fetchTodos() {
   try {
     const response = yield call(() => axios.get("http://localhost:3000/todos"));
@@ -26,7 +44,9 @@ export function* addTodoSaga(action) {
 
 export function* removeTodoSaga(action) {
   try {
-    yield call(() => axios.delete(`http://localhost:3000/todos/${action.payload}`));
+    yield call(() =>
+      axios.delete(`http://localhost:3000/todos/${action.payload}`)
+    );
     yield put(removeTodo(action.payload));
   } catch (error) {
     console.error("Помилка видалення TODO:", error);
@@ -43,14 +63,19 @@ export function* clearTodosSaga() {
 }
 
 export function* toggleCompleteTodoSaga(action) {
-    try {
-      const response = yield call(() =>
-        axios.put(`http://localhost:3000/todos/${action.payload.id}`, {
-          completed: action.payload.completed,
-        })
-      );
-      yield put(toggleComplete({ id: action.payload.id, completed: action.payload.completed }));
-    } catch (error) {
-      console.error("Помилка оновлення виконання TODO:", error);
-    }
+  try {
+    const response = yield call(() =>
+      axios.put(`http://localhost:3000/todos/${action.payload.id}`, {
+        completed: action.payload.completed,
+      })
+    );
+    yield put(
+      toggleComplete({
+        id: action.payload.id,
+        completed: action.payload.completed,
+      })
+    );
+  } catch (error) {
+    console.error("Помилка оновлення виконання TODO:", error);
   }
+}
