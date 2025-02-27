@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchInfoStart, clearInfo } from './store/store';
+import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Button, TextField, Box, Typography, CircularProgress, Link } from "@mui/material";
+import { fetchInfoStart, clearInfo } from "./store/store";
 
 function Swapi() {
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
   const dispatch = useDispatch();
   const result = useSelector((state) => state.api.result);
   const loading = useSelector((state) => state.api.loading);
@@ -16,39 +17,47 @@ function Swapi() {
   };
 
   return (
-    <div>
-      <h1>SWAPI</h1>
-      <p>The Star Wars API</p>
+    <Box sx={{ padding: 2 }}>
+      <Typography variant="h4">SWAPI</Typography>
+      <Typography>The Star Wars API</Typography>
 
-      <h2>Try it now!</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="people/1/"
+      <Typography variant="h6" sx={{ marginTop: 2 }}>
+        Try it now!
+      </Typography>
+      <Box sx={{ display: "flex", gap: 1 }}>
+        <TextField
+          label="Query (e.g., people/1/)"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          variant="outlined"
         />
-        <button onClick={handleSearch}>Request</button>
-      </div>
+        <Button variant="contained" onClick={handleSearch}>
+          Request
+        </Button>
+      </Box>
 
-      <small>
+      <Typography variant="body2" sx={{ marginTop: 2 }}>
         <i>Need a hint? try </i>
-        <a href="#0"><i>people/1/</i></a>
+        <Link href="#0">people/1/</Link>
         <i> or </i>
-        <a href="#0"><i>planets/3/</i></a>
+        <Link href="#0">planets/3/</Link>
         <i> or </i>
-        <a href="#0"><i>starships/9/</i></a>
-      </small>
+        <Link href="#0">starships/9/</Link>
+      </Typography>
 
-      <p className="lead">Result:</p>
-      <button onClick={() => dispatch(clearInfo())}>Clear</button>
+      <Typography variant="h6" sx={{ marginTop: 2 }}>
+        Result:
+      </Typography>
+      <Button variant="outlined" onClick={() => dispatch(clearInfo())}>
+        Clear
+      </Button>
 
-      <div>
-        {loading && <p>Loading...</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+      <Box sx={{ marginTop: 2 }}>
+        {loading && <CircularProgress />}
+        {error && <Typography color="error">{error}</Typography>}
         {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
-      </div>
-    </div>
+      </Box>
+    </Box>
   );
 }
 

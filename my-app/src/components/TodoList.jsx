@@ -1,10 +1,8 @@
-// my-app\src\components\TodoList.jsx
-
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button, TextField, List, ListItem, Checkbox, Typography, Box } from "@mui/material";
 
 const TodoList = () => {
-
   const [text, setText] = useState("");
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.api.todos);
@@ -35,30 +33,63 @@ const TodoList = () => {
   };
 
   return (
-    <div>
-      <h1>TODO</h1>
-      <input value={text} onChange={(e) => setText(e.target.value)} />
-      <button onClick={handleAddTodo}>Додати</button>
+    <Box sx={{ padding: 2 }}>
+      <Typography variant="h4">TODO</Typography>
 
-      <h2>TODOS</h2>
-      <ul>
+      <Box sx={{ display: "flex", gap: 1, marginTop: 2 }}>
+        <TextField
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          label="New Todo"
+          variant="outlined"
+          fullWidth
+        />
+        <Button variant="contained" onClick={handleAddTodo}>
+          Додати
+        </Button>
+      </Box>
+
+      <Typography variant="h6" sx={{ marginTop: 2 }}>
+        TODOS
+      </Typography>
+
+      <List>
         {todos.map((todo) => (
-          <li key={todo._id}>
-            <input
-              type="checkbox"
+          <ListItem key={todo._id} sx={{ display: "flex", alignItems: "center" }}>
+            <Checkbox
               checked={todo.completed}
               onChange={() => handleToggleComplete(todo._id, todo.completed)}
             />
-            <p style={{ textDecoration: todo.completed ? "line-through" : "none" }}>
+            <Typography
+              sx={{
+                textDecoration: todo.completed ? "line-through" : "none",
+                flexGrow: 1,
+              }}
+            >
               {todo.text}
-            </p>
-            <button onClick={() => handleRemoveTodo(todo._id)}>Видалити</button>
-          </li>
+            </Typography>
+            <Button
+              variant="outlined"
+              onClick={() => handleRemoveTodo(todo._id)}
+              color="error"
+            >
+              Видалити
+            </Button>
+          </ListItem>
         ))}
-      </ul>
-      <p>Всього: {todos.length}</p>
-      <button onClick={handleClearTodos}>Очистити</button>
-    </div>
+      </List>
+
+      <Typography variant="body1">Всього: {todos.length}</Typography>
+
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={handleClearTodos}
+        sx={{ marginTop: 2 }}
+      >
+        Очистити
+      </Button>
+    </Box>
   );
 };
 
