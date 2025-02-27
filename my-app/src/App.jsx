@@ -16,7 +16,4 @@ const App = () => {
   );
 };
 
-  git config --global user.email "adelaida.viliorovna@gmail.com"
-  git config --global user.name "Adelaida-Viliorovna"
-
 export default App;
