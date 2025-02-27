@@ -2,7 +2,7 @@
 
 import TodoList from "./components/TodoList";
 import Swapi from "./components/Swapi";
-import { AboutMe } from "./components/AboutMe";
+import AboutMe from "./components/AboutMe";
 
 const App = () => {
   return (
