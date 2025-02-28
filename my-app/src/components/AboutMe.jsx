@@ -92,11 +92,7 @@ function AboutMe() {
       <Box sx={{ marginTop: 2 }}>
         <Typography variant="h6">Особисте:</Typography>
         <Typography>
-          Вік: 22 роки
-          <br />
           Дата народження: 26.02.2002
-          <br />
-          Сімейний стан: не одружена, сім'ю та дітей не планую
           <br />
           Місце проживання: Дніпро, Україна
         </Typography>
