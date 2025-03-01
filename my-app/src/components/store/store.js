@@ -1,8 +1,14 @@
-import { createSlice, configureStore } from "@reduxjs/toolkit";
+import { createAction, createSlice, configureStore } from "@reduxjs/toolkit";
 import createSagaMiddleware from "redux-saga";
 import { rootSaga } from "./rootSaga";
 
 const sagaMiddleware = createSagaMiddleware();
+
+export const fetchTodosRequest = createAction("api/fetchTodos");
+export const addTodoRequest = createAction("api/addTodo");
+export const removeTodoRequest = createAction("api/removeTodo");
+export const clearTodosRequest = createAction("api/clearTodos");
+export const toggleCompleteTodoRequest = createAction("api/toggleCompleteTodo");
 
 const apiSlice = createSlice({
   name: "api",
