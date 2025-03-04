@@ -1,13 +1,9 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Card, CardContent, Typography, Grid, Container, Box } from '@mui/material';
 
-export default function Hotels() {
-    const dispatch = useDispatch();
-    const { result, loading, error } = useSelector((state) => state.api);
 
-    useEffect(() => {
-    }, [dispatch]);
+export default function Hotels() {
+    const { result, loading, error } = useSelector((state) => state.api);
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error: {error}</p>;
