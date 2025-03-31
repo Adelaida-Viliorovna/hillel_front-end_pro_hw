@@ -3,30 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_10-3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 10.3</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Книга контактів</h2>
+        <p>Створіть об'єкт, який матиме одну властивість з масивом об'єктів. 
+            Які представляють контакти у вашій контактній книзі. 
+            Кожен об'єкт має містити ім'я, номер телефону та адресу 
+            електронної пошти. Додайте метод для пошуку контакту за 
+            ім'ям та метод для додавання нових контактів.
+        </p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    let contactBook = {
+        contacts: [
+            { name: "Alice", phone: "123-456-7890", email: "alice@example.com" },
+            { name: "Bob", phone: "234-567-8901", email: "bob@example.com" }
+        ],
+        findContactByName(name) {
+            let findContact = this.contacts.find(contact => contact.name.toLowerCase() === name.toLowerCase()) || "Контакт не знайдено";
+            if (findContact !== "Контакт не знайдено") {
+                return `name: ${findContact.name}, phone: ${findContact.phone}, email: ${findContact.email}`;
+            } else {
+                return findContact;
+            }
+        },
+        addContact(name, phone, email) {
+            this.contacts.push({ name, phone, email });
+            console.log(`Контакт з ім'ям ${name} успішно додано.`);
+        },
+        viewBook(book = this.contacts){
+            for (let x of book) {
+                console.log(`Name: ${x.name}, phone: ${x.phone}, email: ${x.email}`);
+            }
+        }
+    };
+    
+    console.log(contactBook.findContactByName("Alice"));
+    contactBook.addContact("Charlie", "345-678-9012", "charlie@example.com");
+    contactBook.viewBook();
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_10-3" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
