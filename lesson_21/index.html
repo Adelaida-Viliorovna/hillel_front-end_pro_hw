@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Widget</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>Weather Data Fetcher</h1>
+  </header>
+  <main>
+    <form id="weather-form" action="https://api.openweathermap.org/data/2.5/weather">
+      <label for="endpoint">Enter City:</label>
+      <input type="text" id="endpoint" placeholder="dnipro" />
+      <button type="submit">Fetch Weather</button>
+    </form>
+    <div id="loader" class="loader hidden">Loading...</div>
+    <pre id="result"></pre>
+  </main>
+  <footer>
+    <p>&copy; 2024 Weather Widget</p>
+  </footer>
+  <script type="module" src="index.js"></script>
+</body>
+</html>
