@@ -3,30 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_10-2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 10.2</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Отримання парних чисел з масиву</h2>
+        <p>Маєте масив чисел. Використовуйте вже існуючі 
+            методи масиву для створення нового масиву, в 
+            якому лише парні числа з оригінального масиву.
+        </p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+        let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+                    
+        let num = numbers.filter(x => x % 2 === 0);
+                    
+        console.log(numbers);
+        console.log(num);
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_10-2" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
