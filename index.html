@@ -3,30 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_17-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 17.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Клас "Калькулятор"</h2>
+        <p>Створіть клас Calculator, який буде мати методи для виконання базових математичних операцій: додавання, віднімання, множення та ділення.</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    class Calculator {
+      add(a, b) {
+        return a + b;
+      }
+    
+      subtract(a, b) {
+        return a - b;
+      }
+    
+      multiply(a, b) {
+        return a * b;
+      }
+    
+      divide(a, b) {
+        if (b === 0) {
+          return "Помилка: ділення на нуль!";
+        }
+        return a / b;
+      }
+    }
+    
+    const calc = new Calculator();
+    console.log(calc.add(5, 3)); // 8
+    console.log(calc.subtract(10, 4)); // 6
+    console.log(calc.multiply(3, 6)); // 18
+    console.log(calc.divide(8, 2)); // 4
+    console.log(calc.divide(8, 0)); // Помилка: ділення на нуль!
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_17-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
