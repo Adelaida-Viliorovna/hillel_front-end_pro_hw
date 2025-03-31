@@ -3,30 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_12-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 12.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Переход на сторінку</h2>
+        <p>
+            На сторінці є дві кнопки. При натисканні на першу 
+            кнопку користувач повинен ввести в prompt посилання, 
+            при натисканні на другу – переадресовується на інший 
+            сайт (за раніше введеним посиланням).
+        </p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    let userLink = "";
+    
+    document.getElementById("set-link").addEventListener("click", () => {
+        userLink = prompt("Введіть посилання для переходу:", "https://lms.ithillel.ua");
+    
+        let link = document.getElementById("link");
+        link.textContent = userLink
+    });
+    
+    document.getElementById("go-link").addEventListener("click", () => {
+        if (userLink) {
+            window.open(userLink, "_blank");
+        } else {
+            alert("Будь ласка, спочатку введіть посилання!")
+        }
+    })
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <p id="link"></p>
+        <button id="set-link">Ввести посилання</button>
+        <button id="go-link">Перейти</button>
+        <br>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_12-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
