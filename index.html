@@ -3,30 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_17-2</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 17.2</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Клас "Тренер"</h2>
+        <p>Створіть клас Coach, який буде представляти тренера. Додайте властивості, такі як ім'я, спеціалізація та рейтинг. Також реалізуйте метод для виведення інформації про тренера та його рейтинг.</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+  class Coach {
+    constructor(name, specialization, rating) {
+      this.name = name;
+      this.specialization = specialization;
+      this.rating = rating;
+    }
+  
+    displayInfo() {
+      console.log(
+        `Coach: ${this.name}, Specialization: ${this.specialization}, Rating: ${this.rating}`
+      );
+    }
+  }
+  
+  const coach1 = new Coach("John Doe", "Fitness", 4.7);
+  const coach2 = new Coach("Alice Smith", "Yoga", 4.9);
+  
+  coach1.displayInfo(); // "Coach: John Doe, Specialization: Fitness, Rating: 4.7"
+  coach2.displayInfo(); // "Coach: Alice Smith, Specialization: Yoga, Rating: 4.9"                
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_17-2" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
