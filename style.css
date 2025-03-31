@@ -6,9 +6,108 @@
     font-size: 14px;
     border-radius: 5px;
     overflow: auto;
-    max-width: 600px;
+    max-width: 800px;
 }
 
 img {
     border-radius: 15px;
 }
+
+.main_contact-page__form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 12px;
+    background-color: #f5f5fa;
+}
+
+.main_contact-page__contact-form {
+    display:flex;
+    flex-direction:column
+}
+
+.main_contact-page__h1 {
+    background: linear-gradient(90deg, #f0145a 0, #ef8080);
+    -webkit-background-clip: text;
+    color: transparent;
+    font-size: 30px;
+    font-weight: 700;
+    padding-bottom: 30px;
+}
+
+.main_contact-page__message, .main_contact-page__name {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #b3b3ba;
+}
+
+.main_contact-page__name {
+    margin-bottom: 15px;
+    height: 56px;
+}
+
+.main_contact-page__message {
+    /* margin-bottom: 30px; */
+}
+
+.main_contact-page__message, .main_contact-page__name {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #b3b3ba;
+}
+
+.main_contact-page__label {
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #b3b3ba;
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+.main_contact-page__contact-mail, .main_contact-page__contact-phone {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #b3b3ba;
+    height: 56px;
+}
+
+.main_contact-page__contact-phone {
+    /* margin-bottom: 15px; */
+}
+
+.main_contact-page__contact-mail {
+    /* margin-bottom: 30px; */
+    margin-top: 15px;
+}
+
+.main_contact-page__contact-mail, .main_contact-page__contact-phone {
+    padding: 15px;
+    border: none;
+    border-radius: 8px;
+    background-color: #fff;
+    color: #b3b3ba;
+    height: 56px;
+}
+
+.main_contact-page__form-btn {
+    border: none;
+    border-radius: 12px;
+    background-color: #24a3ff;
+    height: 56px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(36, 163, 255, .5);
+    margin-top: 30px;
+}
+
+.main_contact-page__form-btn:hover{background-color:#0085ff}
+.main_contact-page__form-btn:active{background-color:#006ccf}
