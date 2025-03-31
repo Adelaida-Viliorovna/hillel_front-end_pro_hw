@@ -3,30 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_12-3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 12.3</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>TODO лист</h2>
+        <p>Створіть HTML-сторінку, яка містить список завдань 
+            (to-do list) з можливістю додавання нових завдань. 
+            Ваше ціль - використовуючи делегування подій, створити 
+            обробник подій для списку завдань, який дозволить 
+            видаляти завдання при кліку на них.
+        </p>
+        <p>Покроковий план:</p>
+        <ol>
+            <li>Створіть HTML-елементи: список завдань 
+                ul, текстове поле для вводу нових завдань 
+                та кнопку для додавання.
+            </li>
+            <li>Додайте обробник подій до списку завдань 
+                ul, використовуючи делегування.
+            </li>
+            <li>При кліку на будь-якій кнопці видалення, видаліть цей пункт.</li>
+            <li>Додайте можливість вводити нові завдання 
+                у текстове поле і додавати їх до списку за допомогою кнопки.
+            </li>
+        </ol>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+            const todoList = document.getElementById("todo-list");
+            const newTaskInput = document.getElementById("new-task");
+            const addTaskButton = document.getElementById("add-task");
+            
+            todoList.addEventListener("click", (event) => {
+                if (event.target.tagName === "BUTTON" && event.target.classList.contains("delete-btn")) {
+                    event.target.parentElement.remove();
+                }
+            });
+            
+            addTaskButton.addEventListener("click", () => {
+                const taskText = newTaskInput.value.trim();
+                if (taskText) {
+                    const newTask = document.createElement("li");
+                    newTask.innerHTML = `${taskText} &lt;button class="delete-btn"&gt;Видалити&lt;/button&gt;`;
+                    todoList.appendChild(newTask);
+                    newTaskInput.value = "";
+                } else {
+                    alert("Будь ласка, введіть текст завдання!");
+                }
+            });
                 </code>
             </pre>
-        </div>
+        </div>        
         <h3>Результат:</h3>
-        
+        <div>
+            <input type="text" id="new-task" placeholder="Нове завдання">
+            <button id="add-task">Додати завдання</button>
+        </div>
+        <ul id="todo-list">
+            <li>Приклад завдання 1 <button class="delete-btn">Видалити</button></li>
+            <li>Приклад завдання 2 <button class="delete-btn">Видалити</button></li>
+        </ul>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_12-3" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
