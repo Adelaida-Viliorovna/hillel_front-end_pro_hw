@@ -11,4 +11,24 @@
 
 img {
     border-radius: 15px;
+    /* height: 400px; */
+}
+
+button {
+    border: 2px solid black;
+    border-radius: 40px;
+    margin: 20px 0;
+    padding: 15px;
+    font-size: 20px;
+    background-color: transparent;
+}
+button:hover {
+    border: 2px solid lightblue;
+    background-color: lightblue;
+    color: blue;
+}
+button:active {
+    border: 2px solid lightblue;
+    background-color: transparent;
+    color: lightblue;
 }
