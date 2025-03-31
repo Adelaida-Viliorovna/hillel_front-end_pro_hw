@@ -12,3 +12,41 @@
 img {
     border-radius: 15px;
 }
+
+
+
+#weather-widget {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    font-family: Arial, sans-serif;
+    background-color: #e0f7fa;
+    color: #333;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+#weather-widget h2 {
+    margin: 0 0 10px;
+}
+
+#weather-widget button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #0288d1;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#weather-widget button:hover {
+    background-color: #0277bd;
+}

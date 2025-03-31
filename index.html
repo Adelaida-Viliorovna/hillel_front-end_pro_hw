@@ -3,16 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_19-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 19.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Віджет погоди</h2>
+        <p>За допомогою запиту вивести виджет погоди.</p>
+        <p>Ресурс API <a href="https://openweathermap.org/current">https://openweathermap.org/current</a></p>
+        <p>Також потрібно додати кнопку оновлення данних.</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
@@ -22,11 +24,21 @@
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <div class="weather_widget" id="weather-widget">
+          <h2>Поточна погода</h2>
+          <p id="city-name">Місто: Дніпро</p>
+          <img id="weather-icon" src="" alt="Weather icon" style="width: 100px; height: auto;">
+          <p id="temperature"></p>
+          <p id="description"></p>
+          <p id="wind"></p>
+          <p id="humidity"></p>
+          <p id="time"></p>
+          <button id="refresh-btn">Оновити</button>
+        </div>
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_19-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
