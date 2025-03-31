@@ -1,36 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hw_14-1</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header>
-        <h1>Home Work № </h1>
-    </header>
-    <main>
-        <h2>Назва</h2>
-        
-        <h3>Скрипт:</h3>
-        <div class="code">
-            <pre>
+  <header>
+    <h1>Home Work № 14.1</h1>
+  </header>
+  <main>
+    <h2>Слайдер</h2>
+    <p>Пишемо свій слайдер зображень, який повинен:</p>
+    <ol>
+      <li>Відображати зображення та кнопки Next, Prev з боків від зображення.</li>
+      <li>При кліку на Next - показуємо наступне зображення.</li>
+      <li>При кліку на Prev - попереднє</li>
+      <li>При досягненні останнього зображення - ховати кнопку Next. Аналогічно з першим зображенням і кнопкою Prev</li>
+      <li>Кількість слайдів може бути будь-якою</li>
+      <li>Додати можливість навігації через точки під слайдами</li>
+    </ol>
+    <h3>Скрипт:</h3>
+    <div class="code">
+      <pre>
                 <code>
-        
+    const HWslides = document.querySelectorAll(".section-info__slide");
+    const HWprevButton = document.getElementById("HWprev");
+    const HWnextButton = document.getElementById("HWnext");
+    const HWdotsContainer = document.getElementById("HWdots");
+    
+    let HWcurrentSlideIndex = 0;
+    
+    function HWcreateDots() {
+      HWslides.forEach((_, index) => {
+        const dot = document.createElement("div");
+        dot.classList.add("section-info__dot");
+        if (index === HWcurrentSlideIndex) {
+          dot.classList.add("active");
+        }
+        dot.addEventListener("click", () => {
+          HWcurrentSlideIndex = index;
+          HWupdateSlider();
+        });
+        HWdotsContainer.appendChild(dot);
+      });
+    }
+    
+    function HWupdateDots() {
+      const dots = HWdotsContainer.querySelectorAll(".section-info__dot");
+      dots.forEach((dot, index) => {
+        dot.classList.toggle("active", index === HWcurrentSlideIndex);
+      });
+    }
+    
+    function HWupdateSlider() {
+      HWslides.forEach((slide, index) => {
+        slide.style.display = index === HWcurrentSlideIndex ? "flex" : "none";
+      });
+    
+      HWprevButton.disabled = HWcurrentSlideIndex === 0;
+      HWnextButton.disabled = HWcurrentSlideIndex === HWslides.length - 1;
+    
+      HWupdateDots();
+    }
+    
+    HWprevButton.addEventListener("click", () => {
+      if (HWcurrentSlideIndex > 0) {
+        HWcurrentSlideIndex--;
+        HWupdateSlider();
+      }
+    });
+    
+    HWnextButton.addEventListener("click", () => {
+      if (HWcurrentSlideIndex &lt; HWslides.length - 1) {
+        HWcurrentSlideIndex++;
+        HWupdateSlider();
+      }
+    });
+    
+    HWcreateDots();
+    HWupdateSlider();                  
                 </code>
             </pre>
+    </div>
+    <h3>Результат:</h3>
+
+    <section class="section-info__team-slider">
+      <button class="section-info__slider_btn" id="HWprev" disabled>&lt;</button>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_1.jpg" alt="team-img-1">
         </div>
-        <h3>Результат:</h3>
-        
-        <br>
-        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
-        <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
-    </main>
-    <footer>
-        <h4>Анастасія Лизогуб</h4>
-    </footer>
-    <script src="index.js"></script>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_2.jpg" alt="team-img-2">
+        </div>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_3.jpg" alt="team-img-3">
+        </div>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_4.jpg" alt="team-img-4">
+        </div>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_5.jpg" alt="team-img-5">
+        </div>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <div class="section-info__slide">
+        <div class="section-info__slide-img">
+          <img class="slide-img" src="./img/team_6.jpg" alt="team-img-6">
+        </div>
+        <div class="section-info__slide-text">
+          <a href="./app/pages/team_page.html" class="section-info__slide-link">
+            КОМАНДА
+            <svg width="8" height="11" viewBox="0 0 8 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M1.5 1L6 5.5L1.5 10" stroke="#24A3FF" stroke-width="2" />
+            </svg>
+          </a>
+          <h2 class="section-info__slide-h2">
+            Ми звикли брати на себе відповідальність та завжди гарантуємо чесну, вчасну допомогу, навіть у ситуаціях,
+            коли більшість безсилі.
+          </h2>
+          <h4 class="section-info__slide-h4">
+            Олександр Олександровський
+          </h4>
+          <p class="section-info__slide-p">
+            Керуючий партнер
+          </p>
+        </div>
+      </div>
+      <button class="section-info__slider_btn" id="HWnext">&gt;</button>
+      
+    </section>
+    <div class="section-info__dots" id="HWdots"></div>
+
+    <br>
+    <br>
+    <hr>
+    <br>
+    <br>
+    <h2>Практика лекції 14</h2>
+    <h3>Модальне вікно</h3>
+    <p>Зробити модальне вікно, яке відображатиметься після натискання на кнопку:</p>
+    <ul>
+      <li>Вікно має закриватися при натисканні на кнопку хрестика</li>
+      <li>Вікно повинне закритись при натисканні на фоні модального вікна</li>
+      <li>Треба мати можливість відкрити модалку двома або більше кнопками</li>
+      <li>Треба мати можливість створити багато різних модальних вікон </li>
+    </ul>
+    <h3>Скрипт:</h3>
+    <div class="code">
+      <pre>
+                <code>
+    const modal = document.getElementById("lesson14Modal");
+    
+    const modalBtn1 = document.createElement("button");
+    modalBtn1.textContent = "Open Modal 1";
+    modalBtn1.id = "openModal1";
+    modalBtn1.setAttribute("data-title", "Модалка 1");
+    modalBtn1.setAttribute("data-body", "Це контент першого модального вікна.");
+    modalBtn1.setAttribute("data-footer", "Футер першої модалки");
+    modal.appendChild(modalBtn1);
+    
+    const modalBtn2 = document.createElement("button");
+    modalBtn2.textContent = "Open Modal 2";
+    modalBtn2.id = "openModal2";
+    modalBtn2.setAttribute("data-title", "Модалка 2");
+    modalBtn2.setAttribute("data-body", "Це контент другого модального вікна.");
+    modalBtn2.setAttribute("data-footer", "Футер другої модалки");
+    modal.appendChild(modalBtn2);
+    
+    function createModal({ title, body, footer }) {
+      const modalOverlay = document.createElement("div");
+      modalOverlay.style.position = "fixed";
+      modalOverlay.style.top = "0";
+      modalOverlay.style.left = "0";
+      modalOverlay.style.width = "100%";
+      modalOverlay.style.height = "100%";
+      modalOverlay.style.backgroundColor = "rgba(0, 0, 0, 0.5)";
+      modalOverlay.style.display = "flex";
+      modalOverlay.style.justifyContent = "center";
+      modalOverlay.style.alignItems = "center";
+      modalOverlay.style.zIndex = "1000";
+    
+      const modalWindow = document.createElement("div");
+      modalWindow.style.width = "400px";
+      modalWindow.style.backgroundColor = "#fff";
+      modalWindow.style.borderRadius = "10px";
+      modalWindow.style.overflow = "hidden";
+      modalWindow.style.boxShadow = "0 5px 15px rgba(0, 0, 0, 0.3)";
+      modalWindow.style.animation = "fadeIn 0.3s ease-out";
+    
+      const modalHeader = document.createElement("div");
+      modalHeader.style.backgroundColor = "#4CAF50";
+      modalHeader.style.color = "#fff";
+      modalHeader.style.padding = "10px";
+      modalHeader.style.display = "flex";
+      modalHeader.style.justifyContent = "space-between";
+      modalHeader.style.alignItems = "center";
+    
+      const modalTitle = document.createElement("h2");
+      modalTitle.style.margin = "0";
+      modalTitle.textContent = title;
+    
+      const closeButton = document.createElement("button");
+      closeButton.style.background = "none";
+      closeButton.style.border = "none";
+      closeButton.style.color = "#fff";
+      closeButton.style.fontSize = "16px";
+      closeButton.style.cursor = "pointer";
+      closeButton.textContent = "×";
+      closeButton.onclick = () => document.body.removeChild(modalOverlay);
+    
+      modalHeader.appendChild(modalTitle);
+      modalHeader.appendChild(closeButton);
+    
+      const modalBody = document.createElement("div");
+      modalBody.style.padding = "15px";
+      modalBody.style.fontSize = "14px";
+      modalBody.textContent = body;
+    
+      const modalFooter = document.createElement("div");
+      modalFooter.style.backgroundColor = "#f1f1f1";
+      modalFooter.style.padding = "10px";
+      modalFooter.style.textAlign = "right";
+      modalFooter.textContent = footer;
+    
+      modalWindow.appendChild(modalHeader);
+      modalWindow.appendChild(modalBody);
+      modalWindow.appendChild(modalFooter);
+    
+      modalOverlay.appendChild(modalWindow);
+      modalOverlay.onclick = (e) => {
+        if (e.target === modalOverlay) document.body.removeChild(modalOverlay);
+      };
+      document.body.appendChild(modalOverlay);
+    }
+    
+    modal.addEventListener("click", (e) => {
+      if (e.target.tagName === "BUTTON") {
+        const title = e.target.getAttribute("data-title");
+        const body = e.target.getAttribute("data-body");
+        const footer = e.target.getAttribute("data-footer");
+    
+        createModal({ title, body, footer });
+      }
+    });
+                </code>
+            </pre>
+    </div>
+    <h3>Результат:</h3>
+    <div class="lesson-14__modal" id="lesson14Modal"></div>
+    <br>
+    <h3>Cлайдер</h3>
+    <p>Зробити слайдер</p>
+    <ul>
+      <li>Після натискання вперед/назад перемикаємо слайд</li>
+      <li>На першому слайді не має працювати кнопка назад</li>
+      <li>На останньому слайді не має працювати кнопка вперед</li>
+    </ul>
+    <p>Кількість слайдів може бути будь-якою</p>
+    <h3>Скрипт:</h3>
+    <div class="code">
+      <pre>
+                <code>
+    const slides = document.querySelectorAll(".lesson-14__slide");
+    const prevButton = document.getElementById("prev");
+    const nextButton = document.getElementById("next");
+    let currentSlideIndex = 0;
+    
+    function updateSlider() {
+      slides.forEach((slide, index) => {
+        slide.style.display = index === currentSlideIndex ? "block" : "none";
+      });
+    
+      prevButton.disabled = currentSlideIndex === 0;
+      nextButton.disabled = currentSlideIndex === slides.length - 1;
+    }
+    
+    prevButton.addEventListener("click", () => {
+      if (currentSlideIndex > 0) {
+        currentSlideIndex--;
+        updateSlider();
+      }
+    });
+    
+    nextButton.addEventListener("click", () => {
+      if (currentSlideIndex &lt; slides.length - 1) {
+        currentSlideIndex++;
+        updateSlider();
+      }
+    });
+    
+    updateSlider();
+                </code>
+            </pre>
+    </div>
+    <h3>Результат:</h3>
+    <div class="lesson-14__slider" id="lesson14Slider">
+      <button class="lesson-14__slider_btn" id="prev" disabled>&lt;</button>
+      <div class="lesson-14__slide-container">
+        <div class="lesson-14__slide">1</div>
+        <div class="lesson-14__slide">2</div>
+        <div class="lesson-14__slide">3</div>
+        <div class="lesson-14__slide">4</div>
+      </div>
+      <button class="lesson-14__slider_btn" id="next">&gt;</button>
+    </div>
+    <br>
+    <br>
+    <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на
+      репозиторій github.com</a>
+    <br>
+    <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_14-1" target="_blank">Посилання на
+      гілку на github.com</a>
+  </main>
+  <footer>
+    <h4>Анастасія Лизогуб</h4>
+  </footer>
+  <script src="index.js"></script>
 </body>
+
 </html>
