@@ -3,30 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_9-1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 9.1</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Сумма зарплат</h2>
+        <p>Дізнатись суму всіх зарплат користувачів:</p>
+        <div class="code">
+            <pre>
+                <code>
+    let company = {
+        sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600}],
+        development: {
+            web: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800}],
+            internals: [{name: 'Jack', salary: 1300}]
+        }
+    };
+                </code>
+            </pre>
+        </div>
+        <p>Об'єкт може містити невідому кількість департаментів та співробітників</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    let company = {
+        sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600}],
+        development: {
+            web: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800}],
+            internals: [{name: 'Jack', salary: 1300}]
+        }
+    };
+    
+    function getTotalSalaries(department) {
+        let total = 0;
+    
+        if (Array.isArray(department)) {
+            for (let employee of department) {
+                console.log(`Додаємо зарплату ${employee.salary} співробітника ${employee.name}`);
+                total += employee.salary;
+                console.log(`Поточна сума: ${total}`);
+            }
+        } else {
+            for (let subDepartment in department) {
+                console.log(`Переходимо в підрозділ: ${subDepartment}`);
+                total += getTotalSalaries(department[subDepartment]);
+                console.log(`Сума після підрозділу ${subDepartment}: ${total}`);
+            }
+        }
+    
+        return total;
+    }
+    
+    let totalSalaries = getTotalSalaries(company);
+    console.log("Загальна сума зарплат:", totalSalaries);                    
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/result_img.png" alt="result_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_9-1" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
