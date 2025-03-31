@@ -3,30 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_7-3</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 7.3</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Функція з циклом</h2>
+        <p>Цикл на кожній ітерації пропонує через prompt ввести 
+            число більше 100 (але максимум 10 ітерацій циклу). 
+            Якщо відвідувач ввів число менше ста – попросити ввести ще раз, 
+            і таке інше. Якщо користувач вводить більше ста, 
+            текст або цикл закінчує всі ітерації, то функція виводить 
+            в консоль останній введення користувача і завершує функцію.
+        </p>
         <h3>Скрипт:</h3>
+        <p>Варіант 1:</p>
         <div class="code">
             <pre>
                 <code>
-        
+    function askForNumber() {
+        let input; 
+    
+        for (let i = 0; i < 10; i++) {
+            let userInput = prompt("Введіть число більше 100:");
+    
+            if (userInput === null || userInput === "") {
+                alert("Введіть число більше 100. Спробуйте ще раз.");
+                continue; 
+            }
+    
+            if (!isNaN(+userInput)) {
+                if (+userInput > 100) {
+                    input = userInput; 
+                    break; 
+                } else {
+                    alert("Число має бути більше 100. Спробуйте ще раз.");
+                    input = userInput; 
+                }
+            } else {
+                input = userInput; 
+                break;
+            }
+        }
+    
+        alert(`Останнє введення користувача: ${input !== undefined ? input : 'не введено'}`);
+    }
+    
+    askForNumber();                    
                 </code>
             </pre>
         </div>
-        <h3>Результат:</h3>
+        <p>Варіант 2:</p>
+        <div class="code">
+            <pre>
+                <code>
+    function askForNumber() { 
+        let number; 
+        let entered = false; 
+    
+        for (let i = 0; i < 10; i++) { 
+            number = prompt("Введіть число більше 100:", ""); 
+    
+            if (number === null || number === "") { 
+                alert("Ви натиснули 'Скасувати' або залишили поле порожнім."); 
+            } 
+            else if (isNaN(number)) { 
+                alert("Будь ласка, введіть число, а не текст."); 
+            } 
+            else if (+number > 100) { 
+                alert(`Останнє введене число більше 100: ${number}`); 
+                entered = true; 
+                return; 
+            } 
+            else { 
+                alert("Число менше або дорівнює 100. Спробуйте ще раз."); 
+            }
+        }
+    
+        if (!entered) { 
+            alert("Число більше 100 так і не було введено після 10 спроб."); 
+        }
+    }
+    
+    askForNumber();
+                </code>
+            </pre>
+        </div>
         
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_7-3" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
