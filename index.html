@@ -3,30 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hw_</title>
+    <title>hw_5-4</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
-        <h1>Home Work № </h1>
+        <h1>Home Work № 5.4</h1>
     </header>
     <main>
-        <h2>Назва</h2>
-        
+        <h2>Просте число чи ні</h2>
+        <p>Дано ціле число (ввести через 'prompt'). З'ясувати, чи просто воно (простим називається число, більше 1, що не має інших дільників, крім 1 і себе).</p>
         <h3>Скрипт:</h3>
         <div class="code">
             <pre>
                 <code>
-        
+    const number = +(prompt('Введіть ціле число:'
+    if (isNaN(number) || number < 2){
+        alert('Введіть ціле число більше за 1')
+    } else {
+        let isPrime = true;
+        for (let i=2; i < number; i++){
+            if (number % i === 0){
+                isPrime = false;
+                break;
+            }
+        }
+        if (isPrime) {
+            alert(`${number} є простим числом.`);
+        } else {
+            alert(`${number} не є простим числом.`);
+        }
+    }
                 </code>
             </pre>
         </div>
         <h3>Результат:</h3>
-        
+        <img src="./img/1_img.png" alt="1_img">
+        <img src="./img/2_img.png" alt="2_img">
+        <img src="./img/3_img.png" alt="3_img">
+        <img src="./img/4_img.png" alt="4_img">
+        <img src="./img/5_img.png" alt="5_img">
+        <img src="./img/6_img.png" alt="6_img">
         <br>
         <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw.git" target="_blank">Посилання на репозиторій github.com</a>
         <br>
-        <!-- <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_2" target="_blank">Посилання на гілку на github.com</a> -->
+        <a href="https://github.com/Adelaida-Viliorovna/hillel_front-end_pro_hw/tree/hw_5-4" target="_blank">Посилання на гілку на github.com</a>
     </main>
     <footer>
         <h4>Анастасія Лизогуб</h4>
